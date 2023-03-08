@@ -22,9 +22,5 @@ resource "aws_route_table" "rt_capstone" {
 resource "aws_route_table_association" "rt-ass_capstone" {
   subnet_id = aws_subnet.subnet_capstone.id
   route_table_id = aws_route_table.rt_capstone.id
-
-  tags = {
-    "Name" = "rt-ass_capstone"
-  }
 }
 
