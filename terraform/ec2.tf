@@ -1,5 +1,5 @@
 resource "aws_instance" "instance_capstone_jenkins" {
-  ami = "ami-006dcf34c09e50022"
+  ami = "ami-0557a15b87f6559cf"
   instance_type = "t2.micro"
   key_name = "ansible-keypair"
   subnet_id = aws_subnet.subnet_capstone.id
