@@ -1,0 +1,19 @@
+---
+- name: Play for deploying jenkins on EC2 instance
+  hosts: EC2
+  remote_user: ubuntu
+  become: true
+
+  tasks:
+    - name: Update apt
+      ansible.builtin.apt:
+        update_cache: true
+
+    - name: Install openJDK
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: "present"
+      with_items:
+        - openjdk-11-jre
+        - jenkins
+
