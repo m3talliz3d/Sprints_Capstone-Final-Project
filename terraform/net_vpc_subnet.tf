@@ -1,6 +1,6 @@
 # Create a VPC
 resource "aws_vpc" "vpc_capstone" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = var.network["cidr_block"]
 
   tags = {
     "Name" = "vpc_sprints_capstone"
