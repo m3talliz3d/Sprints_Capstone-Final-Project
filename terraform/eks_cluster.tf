@@ -10,8 +10,8 @@ resource "aws_eks_cluster" "eks" {
     endpoint_public_access  = true
 
     subnet_ids = [
-      aws_subnet.subnet_public_capstone.id,
-      aws_subnet.subnet_private_capstone.id
+      aws_subnet.subnet_public_capstone_A.id,
+      aws_subnet.subnet_public_capstone_B.id
     ]
   }
   # Ensure that IAM Role permissions are created before and deleted after EKS Cluster handling.
