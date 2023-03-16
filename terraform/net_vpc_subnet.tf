@@ -21,6 +21,7 @@ resource "aws_subnet" "subnet_public_capstone_A" {
 resource "aws_subnet" "subnet_public_capstone_B" {
   vpc_id = aws_vpc.vpc_capstone.id
   cidr_block = "10.0.25.0/24"
+  map_public_ip_on_launch = true
   availability_zone = var.network["AVAIL_ZONE_B"]
 
 
