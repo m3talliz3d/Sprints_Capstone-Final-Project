@@ -21,3 +21,10 @@ variable "network" {
   }
   type = map
 }
+
+variable "cluster" {
+  default = {
+    "namespace" = "namespace_ebs"
+    "service_account_name" = "san_ebs"
+  }
+}
