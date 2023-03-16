@@ -6,11 +6,12 @@ resource "aws_eks_cluster" "eks" {
   role_arn = aws_iam_role.eks_cluster.arn
   version  = "1.24" # Desired Kubernetes master version
   vpc_config {
-    endpoint_private_access = true
+    #endpoint_private_access = true
     endpoint_public_access  = true
 
     subnet_ids = [
-      "10.0.20.0/24"
+      aws_subnet.subnet_public_capstone.id,
+      aws_subnet.subnet_private_capstone.id
     ]
   }
   # Ensure that IAM Role permissions are created before and deleted after EKS Cluster handling.

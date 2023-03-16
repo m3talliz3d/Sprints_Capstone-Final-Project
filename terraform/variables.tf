@@ -16,6 +16,8 @@ variable "ec2" {
 variable "network" {
   default = {
     "cidr_block" = "10.0.0.0/16"
+    "AVAIL_ZONE_A" = "us-east-1a"
+    "AVAIL_ZONE_B" = "us-east-1b"
   }
   type = map
 }
