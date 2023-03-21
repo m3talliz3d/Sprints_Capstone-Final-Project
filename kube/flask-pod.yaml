@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: flask-pod
+  labels:
+    name: flask-pod
+    app: capstone-webapp
+spec:
+  containers:
+    - name: flask
+      image: metallized/sprints_capstone_flask
