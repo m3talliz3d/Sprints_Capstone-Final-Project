@@ -6,7 +6,7 @@ pipeline {
                 git url: 'https://github.com/m3talliz3d/Sprints_Capstone-Final-Project.git', branch: 'main' , credentialsId: 'github_pipeline_id'
             }
         }
-        stage('Build Docker image Python app and push to ecr 🚚📌') {
+        stage('Build and push Flask app') {
             steps{
             withCredentials([string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY'), string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_ACCESS_KEY_ID')]) {
                 script {
