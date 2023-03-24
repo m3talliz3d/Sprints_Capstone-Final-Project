@@ -4,6 +4,7 @@ resource "aws_instance" "instance_capstone_jenkins" {
   key_name = "ansible-keypair"
   subnet_id = aws_subnet.subnet_public_capstone_A.id
   vpc_security_group_ids = ["${aws_security_group.sg_capstone.id}"]
+  user_data = "${file("../scripts/ansible_dock_aws_kube.sh")}"
 
   lifecycle {
     create_before_destroy = true
@@ -15,6 +16,9 @@ resource "aws_instance" "instance_capstone_jenkins" {
 }
 
 resource "null_resource" "public_ip_to_etc_hosts" {
+  # provisioner "local-exec" {
+  #   command = "PUBLIC_IP=${aws_instance.instance_capstone_jenkins.public_ip}"
+  # }
   provisioner "local-exec" {
     command = "../scripts/ec2_public_ip_add.sh"
   }
@@ -27,4 +31,5 @@ resource "null_resource" "public_ip_to_etc_hosts" {
 
 output "public_ip" {
   value = aws_instance.instance_capstone_jenkins.public_ip
+  depends_on = [aws_instance.instance_capstone_jenkins]
 }
