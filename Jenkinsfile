@@ -8,6 +8,7 @@ pipeline {
         }
         stage('Build Docker image Python app and push to ecr 🚚📌') {
             steps{
+            withCredentials([string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY'), string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_ACCESS_KEY_ID')]) {
                 script {
                     sh '''
                     pwd
@@ -21,6 +22,21 @@ pipeline {
                     '''
                 }
             }
+            }
         }
+        // stage('Apply Kubernetes files 🚀 🎉 ') {
+        //     steps{
+        //     withCredentials([string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY'), string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_ACCESS_KEY_ID')]) {
+        //         script {
+        //             sh '''
+        //             sed -i \"s|image:.*|image: 612386077301.dkr.ecr.us-east-1.amazonaws.com/python_app:app_"$BUILD_NUMBER"|g\" `pwd`/kubernetes_manifest_file/deployment_flaskapp.yml
+        //             sed -i \"s|image:.*|image: 612386077301.dkr.ecr.us-east-1.amazonaws.com/python_db:db_"$BUILD_NUMBER"|g\" `pwd`/kubernetes_manifest_file/statefulSet_flaskdb.yml
+        //             aws eks --region us-east-1 update-kubeconfig --name eks
+        //             kubectl apply -f $PWD/kubernetes_manifest_file
+        //             '''
+        //         }
+        //         }    
+        //     }
+        // }        
     }
 }
