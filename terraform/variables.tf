@@ -7,7 +7,7 @@ variable "main" {
 variable "ec2" {
   default = {
     "AMI" = "ami-0557a15b87f6559cf"
-    "ec2_type" = "t2.micro"
+    "ec2_type" = "t2.medium"
     "tag" = "Jenkins_capstone"
     }
   type = map
