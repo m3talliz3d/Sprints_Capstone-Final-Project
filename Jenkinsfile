@@ -15,10 +15,10 @@ pipeline {
                     cd $PWD/docker/FlaskApp/
                     aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 476713460067.dkr.ecr.us-east-1.amazonaws.com
                     docker build -t ecr_repo:flask .
-                    docker tag ecr_repo:flask 476713460067.dkr.ecr.us-east-1.amazonaws.com/ecr_repo/ecr_repo:flask
-                    docker push 476713460067.dkr.ecr.us-east-1.amazonaws.com/ecr_repo/ecr_repo:flask
+                    docker tag ecr_repo:flask 476713460067.dkr.ecr.us-east-1.amazonaws.com/ecr_repo:flask
+                    docker push 476713460067.dkr.ecr.us-east-1.amazonaws.com/ecr_repo:flask
                     echo "Docker Cleaning up 🗑️"
-                    docker rmi 476713460067.dkr.ecr.us-east-1.amazonaws.com/ecr_repo/ecr_repo:flask
+                    docker rmi 476713460067.dkr.ecr.us-east-1.amazonaws.com/ecr_repo:flask
                     '''
                 }
             }
@@ -33,10 +33,10 @@ pipeline {
                     cd $PWD/docker/db/
                     aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 476713460067.dkr.ecr.us-east-1.amazonaws.com
                     docker build -t ecr_repo:sql .
-                    docker tag ecr_repo:sql 476713460067.dkr.ecr.us-east-1.amazonaws.com/ecr_repo/ecr_repo:sql
-                    docker push 476713460067.dkr.ecr.us-east-1.amazonaws.com/ecr_repo/ecr_repo:sql
+                    docker tag ecr_repo:sql 476713460067.dkr.ecr.us-east-1.amazonaws.com/ecr_repo:sql
+                    docker push 476713460067.dkr.ecr.us-east-1.amazonaws.com/ecr_repo:sql
                     echo "Docker Cleaning up 🗑️"
-                    docker rmi 476713460067.dkr.ecr.us-east-1.amazonaws.com/ecr_repo/ecr_repo:sql
+                    docker rmi 476713460067.dkr.ecr.us-east-1.amazonaws.com/ecr_repo:sql
                     '''
                 }
             }
