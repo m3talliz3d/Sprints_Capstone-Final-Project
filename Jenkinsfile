@@ -11,7 +11,7 @@ pipeline {
                 script {
                     sh '''
                     pwd
-                    cd $PWD/flask_app/FlaskApp/
+                    cd $PWD/docker/FlaskApp/
                     aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 476713460067.dkr.ecr.us-east-1.amazonaws.com
                     docker build -t flask_app:v"$BUILD_NUMBER" .
                     docker tag flask_app:v"$BUILD_NUMBER" 476713460067.dkr.ecr.us-east-1.amazonaws.com/flask_app:v"$BUILD_NUMBER"
