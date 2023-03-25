@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-dep
+spec:
+  template:
+    metadata:
+      name: flask-pod
+      labels:
+        name: flask-pod
+        app: capstone-webapp
+    spec:
+      containers:
+        - name: my-flask
+          image: metallized/sprints_capstone_flask:v1
+          ports:
+          - containerPort: 5002
+          envFrom:
+            - configMapRef:
+                name: app-configmap
+            - secretRef:
+                name: app-secret
+      volumes:
+      - name: flask-vol
+        persistentVolumeClaim:
+          claimName: flask-pvc
+  selector:
+    matchLabels:
+      name: flask-pod
+  replicas: 2
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: flask-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
