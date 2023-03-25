@@ -11,6 +11,7 @@
         apt-get install -y docker-ce
         sudo usermod -aG docker $USER
         newgrp docker
+        chmod 666 /var/run/docker.sock
 
         # apt-get install -y awscli
         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -26,5 +27,4 @@
         chmod +x ./kubectl
         mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
         echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
-        kubectl version --short --client
-        EOF
+        #kubectl version --short --client
