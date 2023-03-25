@@ -7,5 +7,5 @@ metadata:
     app: capstone-webapp
 spec:
   containers:
-    - name: flask
-      image: metallized/sprints_capstone_flask
+    - name: my-flask
+      image: metallized/sprints_capstone_flask:v1
