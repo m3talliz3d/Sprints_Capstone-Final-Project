@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db-set
+spec:
+  selector:
+    matchLabels:
+      name: db
+  serviceName: "db"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: db
+    spec:
+      containers:
+      - name: mysql
+        image: metallized/sprints_capstone_db:v1
+        ports:
+          - containerPort: 3306
+        envFrom:
+          - secretRef:
+              name: db-secret
+      volumes:
+        - name: db-vol
+          persistentVolumeClaim:
+            claimName: db-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: db-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
