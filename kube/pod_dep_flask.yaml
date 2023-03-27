@@ -3,12 +3,15 @@ kind: Deployment
 metadata:
   name: flask-dep
 spec:
+  selector:
+    matchLabels:
+      name: flask-pod
+  replicas: 2
   template:
     metadata:
       name: flask-pod
       labels:
         name: flask-pod
-        app: capstone-webapp
     spec:
       containers:
         - name: my-flask
@@ -24,10 +27,6 @@ spec:
       - name: flask-vol
         persistentVolumeClaim:
           claimName: flask-pvc
-  selector:
-    matchLabels:
-      name: flask-pod
-  replicas: 2
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -35,7 +34,7 @@ metadata:
   name: flask-pvc
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 10Gi
