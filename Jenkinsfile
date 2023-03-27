@@ -47,10 +47,10 @@ pipeline {
         //     withCredentials([string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY'), string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_ACCESS_KEY_ID')]) {
         //         script {
         //             sh '''
-        //             sed -i \"s|image:.*|image: 612386077301.dkr.ecr.us-east-1.amazonaws.com/python_app:app_"$BUILD_NUMBER"|g\" `pwd`/kubernetes_manifest_file/deployment_flaskapp.yml
-        //             sed -i \"s|image:.*|image: 612386077301.dkr.ecr.us-east-1.amazonaws.com/python_db:db_"$BUILD_NUMBER"|g\" `pwd`/kubernetes_manifest_file/statefulSet_flaskdb.yml
-        //             aws eks --region us-east-1 update-kubeconfig --name eks
-        //             kubectl apply -f $PWD/kubernetes_manifest_file
+        //             sed -i \"s|image:.*|image: 476713460067.dkr.ecr.us-east-1.amazonaws.com/ecr_repo:flask |g\" `pwd`/kube/pod_dep_flask.yaml
+        //             sed -i \"s|image:.*|image: 476713460067.dkr.ecr.us-east-1.amazonaws.com/ecr_repo:sql" |g\" `pwd`/kube/pod_stateful_db.yml
+        //             aws eks --region us-east-1 update-kubeconfig --name sprint_eks_cluster
+        //             kubectl apply -f $PWD/kube
         //             '''
         //         }
         //         }    
