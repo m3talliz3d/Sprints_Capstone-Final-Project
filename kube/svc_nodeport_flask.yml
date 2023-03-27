@@ -4,7 +4,6 @@ metadata:
   name: flask-service
   labels:
     name: flask-service
-    app: capstone-webapp
 spec:
   type: NodePort
   ports:
@@ -13,4 +12,3 @@ spec:
       nodePort: 30004
   selector:
     name: flask-pod
-    app: capstone-webapp
