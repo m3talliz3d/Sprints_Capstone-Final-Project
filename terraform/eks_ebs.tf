@@ -5,7 +5,7 @@ locals {
 resource "aws_eks_addon" "addon" {
   cluster_name  = aws_eks_cluster.eks.name
   addon_name    = "aws-ebs-csi-driver" # Name of Addon i used
-  addon_version = "v1.11.2-eksbuild.1" # e.g., previous version v1.8.7-eksbuild.2 and the new version is v1.8.7-eksbuild.3
+  addon_version = "v1.17.0-eksbuild.1" # e.g., previous version v1.8.7-eksbuild.2 and the new version is v1.8.7-eksbuild.3
   # service_account_role_arn = local.k8s_service_account_name
   depends_on = [
     aws_iam_role_policy_attachment.ebs_csi_plugin_policy_attachment
