@@ -28,3 +28,25 @@
         pkg:
         - jenkins
         state: "present"
+
+    - name: Stop jenkins
+      ansible.builtin.systemd:
+        name: jenkins
+        state: stopped
+
+    - name: Download Jenkins backup to /var/lib/
+      ansible.builtin.get_url:
+        url: https://filebin.net/002e4kysvg7kl52v/jenkins_backup.tar
+        dest: /var/lib/jenkins_backup.tar
+        checksum: sha256:5467967b867ed13e89394cdda428dae143273151429ac9fd86bc19c5ecee34cd
+
+    - name: Extract Archive to /var/lib/
+      ansible.builtin.unarchive:
+        src: /var/lib/jenkins_backup.tar
+        dest: /var/lib/
+        remote_src: true
+
+    - name: Start jenkins
+      ansible.builtin.systemd:
+        name: jenkins
+        state: started
