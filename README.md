@@ -27,7 +27,7 @@
       -----BEGIN RSA PRIVATE KEY-----
       <PASTE_PEM_KEY_HERE>
       -----END RSA PRIVATE KEY-----
-
+      ```
   - Create file called "**aws_creds**"
     - Structure should be 
       ```json 
