@@ -41,7 +41,17 @@
 
 ## Deployment
 1. navigate to terraform directory and run `terrafrom apply`. Once completed successfully, proceed to step 2.
-2. Navigate to Ansible directory and run  `ansible-playbook main.ansible.yaml
+2. Navigate to Ansible directory and run  `ansible-playbook main.ansible`.yaml
     -  NOTE: Ansible will use the configured host name which were added to hosts file [/etc/hosts].
     - hostname used in this repo for the EC2 instance is `aws.metallized.project`.
 
+
+## Accessing Deployments
+
+### Access to EC2:
+To access EC2 instance via ssh you can run `ssh -i /creds/ansible-keypair.pem aws.metallized.project`.
+### Access to Jenkins UI
+To access jenkins UI you can use the IP of the EC2, you can get the ip using 3 differernt methods:
+  - run `grep aws.metalllized.project /etc/hosts`
+  - run from within the `terraform` directory `terraform output public_ip`
+  - or run `nslookup aws.metallized.project localhost`
