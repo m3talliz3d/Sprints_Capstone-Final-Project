@@ -55,3 +55,23 @@ To access jenkins UI you can use the IP of the EC2, you can get the ip using 3 d
   - run `grep aws.metalllized.project /etc/hosts`
   - run from within the `terraform` directory `terraform output public_ip`
   - or run `nslookup aws.metallized.project localhost`
+
+
+## Known Issues
+- ### ssh to `aws.metallized.project` show error:
+  ```bash
+  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+  Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+  .
+  .
+  .
+  Add correct host key in /home/$USER/.ssh/known_hosts to get rid of this message.
+  Offending ECDSA key in /home/&USER/.ssh/known_hosts:2
+  ECDSA host key for aws.metallized.project has changed and you have requested strict checking.
+  Host key verification failed.
+  ```
+  - ### Solution:
+    - type `ssh-keygen -R aws.metallized.project` in the terminal and it will remove the old fingerprint
