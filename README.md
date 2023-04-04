@@ -1,5 +1,8 @@
 # Automating Infrastructure Deployment and CI/CD with DevOps 🚀
 
+## Table of content
+[Introduction](#Introduction)
+
 ## Introduction
  This project aims to automate the deployment of infrastructure and enable continuous integration and continuous deployment (CI/CD) for a web application. The infrastructure is deployed using Terraform, which sets up an EC2 instance, Elastic Container Registry (ECR), and Elastic Kubernetes Service (EKS). Ansible is then used to install necessary tools such as Jenkins, Docker, Kubectl, and AWS-cli on the EC2 instance.
 
@@ -76,5 +79,5 @@ To access jenkins UI you can use the IP of the EC2, you can get the ip using 3 d
   ECDSA host key for aws.metallized.project has changed and you have requested strict checking.
   Host key verification failed.
   ```
-  - ### Solution:
+  - #### Solution:
     - type `ssh-keygen -R aws.metallized.project` in the terminal and it will remove the old fingerprint
