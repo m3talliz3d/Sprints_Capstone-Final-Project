@@ -9,8 +9,10 @@
  With the infrastructure set up, a Jenkins pipeline is created to detect changes in the code on GitHub. Whenever a change is detected, a Docker image is built and pushed to ECR. The pipeline then deploys the pods and deployments using the newly pushed image on the ECR, ensuring that the latest code changes are always available on the webserver backed by MySQL. This process enables quick and efficient deployment of updates to the web application, while minimizing human error and downtime.
 
 ## Features
-[x] T1
-[x] T2
+- :white_check_mark: Terraform: Add IP to hosts file
+- :x: Jenkins: Dev Change Github token
+- :x: Jenkins: Dev change AWS_SECRET_ACCESS_KEY
+- :x: Jenkins: Dev change AWS_SECRET_ACCESS_ID
 <br><br>
 
 ## Prerequisites (Tools)
