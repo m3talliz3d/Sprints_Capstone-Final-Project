@@ -54,7 +54,7 @@
 
 ## Accessing Deployments
 
-### Access to EC2:
+### Access to EC2
 To access EC2 instance via ssh you can run `ssh -i /creds/ansible-keypair.pem aws.metallized.project`.
 ### Access to Jenkins UI
 To access jenkins UI you can use the IP of the EC2, you can get the ip using 3 differernt methods:
@@ -64,7 +64,7 @@ To access jenkins UI you can use the IP of the EC2, you can get the ip using 3 d
 
 
 ## Known Issues
-- ### ssh to `aws.metallized.project` show error:
+- ### ssh to `aws.metallized.project` show error
   ```bash
   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
@@ -79,5 +79,5 @@ To access jenkins UI you can use the IP of the EC2, you can get the ip using 3 d
   ECDSA host key for aws.metallized.project has changed and you have requested strict checking.
   Host key verification failed.
   ```
-  - #### Solution:
+  - #### Solution
     - type `ssh-keygen -R aws.metallized.project` in the terminal and it will remove the old fingerprint
