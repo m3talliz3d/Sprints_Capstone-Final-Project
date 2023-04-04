@@ -10,7 +10,7 @@
   tasks:
     - name: Download and install Jenkins keyring
       ansible.builtin.shell: |
-        curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null &&
+        curl -fsSL curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null &&
         echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
   
     - name: Update apt
@@ -36,7 +36,7 @@
 
     - name: Download Jenkins backup to /var/lib/
       ansible.builtin.get_url:
-        url: https://filebin.net/002e4kysvg7kl52v/jenkins_backup.tar
+        url: https://filebin.net/v489h8vczzyirm5q/jenkins_backup.tar
         dest: /var/lib/jenkins_backup.tar
         checksum: sha256:5467967b867ed13e89394cdda428dae143273151429ac9fd86bc19c5ecee34cd
 
