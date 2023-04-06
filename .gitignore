@@ -2,4 +2,4 @@ creds/*
 misc/*
 *.tfstate*
 *.terraform/
-terraform/.terraform.lock.hcl
+terraform/*lock.hcl
