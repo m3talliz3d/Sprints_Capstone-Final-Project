@@ -6,6 +6,7 @@
 ## Introduction
  This project aims to automate the deployment of infrastructure and enable continuous integration and continuous deployment (CI/CD) for a web application. The infrastructure is deployed using Terraform, which sets up an EC2 instance, Elastic Container Registry (ECR), and Elastic Kubernetes Service (EKS). Ansible is then used to install necessary tools such as Jenkins, Docker, Kubectl, and AWS-cli on the EC2 instance.
 
+![image](sprints_capstone_mod.png)
 <br>
 
 ## Infrastructure setup
