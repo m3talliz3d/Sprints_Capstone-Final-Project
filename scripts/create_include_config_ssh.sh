@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Set ENV_VAR to the project directory
-export CAPSTONE_PROJECT="$(cd .. && export TEST=$PWD && echo $TEST)"
+export CAPSTONE_PROJECT="$(export TEST=$PWD && echo $TEST)"
 CONFIG_FILE="$HOME/.ssh/config"
 
 if [[ -s "$CONFIG_FILE" ]]; then # If config File is empty
