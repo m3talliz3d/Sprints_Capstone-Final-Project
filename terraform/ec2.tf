@@ -1,9 +1,10 @@
 resource "aws_instance" "instance_capstone_jenkins" {
   ami = var.ec2["AMI"]
   instance_type = var.ec2["ec2_type"]
-  key_name = "ansible-keypair"
+  #key_name = "ansible-keypair"
   subnet_id = aws_subnet.subnet_public_capstone_A.id
   vpc_security_group_ids = ["${aws_security_group.sg_capstone.id}"]
+  key_name = aws_key_pair.ec2_keypair.key_name
   user_data = "${file("../scripts/ansible_dock_aws_kube.sh")}"
 
   lifecycle {
@@ -13,6 +14,7 @@ resource "aws_instance" "instance_capstone_jenkins" {
   tags = {
     "Name" = var.ec2["tag"]
   }
+  depends_on = [aws_key_pair.ec2_keypair]
 }
 
 resource "null_resource" "public_ip_to_etc_hosts" {
