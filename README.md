@@ -12,10 +12,19 @@
  With the infrastructure set up, a Jenkins pipeline is created to detect changes in the code on GitHub. Whenever a change is detected, a Docker image is built and pushed to ECR. The pipeline then deploys the pods and deployments using the newly pushed image on the ECR, ensuring that the latest code changes are always available on the webserver backed by MySQL. This process enables quick and efficient deployment of updates to the web application, while minimizing human error and downtime.
 
 ## Perks
+**Scripts:**
 - :x: Script: Create "creds" directory and include the required credentials.
 - :white_check_mark: Script: append "<project_directory>/creds/config" in ~/.ssh/config file.
 - :white_check_mark: Script: Remove added line only to "~/.ssh/config" file as a cleanup process.
-- :white_check_mark: Terraform: Add IP to hosts file.
+<br>
+
+**Terraform:**
+- :white_check_mark: Terraform: Add IP & FQDN to hosts file on EC2 creation.
+- :white_check_mark: Terraform: Remove IP & FQDN to hosts file on EC2 Destroy.
+- :x: Terrafrom: Output PEM file key to `creds/ansible-keypair.pem`
+<br>
+
+**Jenkins:**
 - :x: Jenkins: Script to help Dev Change Github token.
 - :x: Jenkins: Script to help Dev change AWS_SECRET_ACCESS_KEY.
 - :x: Jenkins: Script to help Dev change AWS_SECRET_ACCESS_ID.
