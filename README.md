@@ -102,6 +102,6 @@ To access jenkins UI you can use the IP of the EC2, you can get the ip using 3 d
 
 
 ## Issues & Contributions
-So far I am not familiar with maintaining issues on the project, yet it is still work in progress and trying to make sure that most issues is resolved, I will keep updating the [Issues Section](Known Issues).
+So far I am not familiar with maintaining issues on the project, yet it is still work in progress and trying to make sure that most issues is resolved, I will keep updating the [Issues Section](#Known Issues).
 
 Yet, I would love to hear feedback if you had any issues running the project.
