@@ -15,11 +15,12 @@
 ## Perks
 **Scripts:**
 - :construction: Script: Create a "case" script to provide multiple options to deployment.
-  - :x: option A: Prepare Credential folder.
-  - :x: Option B: Run Terrafrom > Run Ansible > Push creds to EC2 (encoded).
-  - :x: Option C: Run Terraform.
-  - :x: Option D: Run Asible.
-  - :x: Option E: Cleanup.
+  - :white_check_mark: option 1: Prepare Credential folder.
+  - :x: Option 2: Run Terrafrom > Run Ansible.
+  - :white_check_mark: Option 3: Run Terraform.
+  - :x: Option 4: Run Asible.
+  - :white_check_mark: Option 5: Detroy Terraform.
+  - :x: Option 6: Cleanup creds & revert ssh_config changes.
 - :x: Script: Create "creds" directory and include the required credentials.
 - :white_check_mark: Script: append "<project_directory>/creds/config" in ~/.ssh/config file.
 - :white_check_mark: Script: Remove added line only to "~/.ssh/config" file as a cleanup process.
@@ -28,7 +29,7 @@
 **Terraform:**
 - :white_check_mark: Terraform: Add IP & FQDN to hosts file on EC2 creation.
 - :white_check_mark: Terraform: Remove IP & FQDN to hosts file on EC2 Destroy.
-- :x: Terrafrom: Output PEM file key to `creds/ansible-keypair.pem`
+- :white_check_mark: Terrafrom: Output PEM file key to `creds/ansible-keypair.pem`
 <br>
 
 **Jenkins:**
