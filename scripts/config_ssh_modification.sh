@@ -6,7 +6,7 @@ hello_world(){
 
 create_include_config_ssh(){
   #Set ENV_VAR to the project directory
-  CAPSTONE_PROJECT=$(dirname $(find $HOME -type f -name "test.sh"  2> /dev/null | grep -w scripts))
+#  CAPSTONE_PROJECT=$(dirname $(find $HOME -type f -name "test.sh"  2> /dev/null | grep -w scripts))
   CONFIG_FILE="$HOME/.ssh/config"
   echo $CAPSTONE_PROJECT
 
@@ -27,4 +27,17 @@ create_include_config_ssh(){
 
 remove_include_config_ssh(){
   sed -i "/creds/d" ~/.ssh/config
+}
+
+create_config_file(){
+  `cat << EOT > creds/config
+  Host aws.metallized.project
+    HostName aws.metallized.project
+    User ubuntu
+    IdentityFile $CAPSTONE_PROJECT/creds/ansible-keypair.pem
+    StrictHostKeyChecking no`
+}
+
+create_pem_file(){
+  terraform -chdir=terraform output private_key_pem | grep -v EOT > creds/ansible-keypair.pem
 }
