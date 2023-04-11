@@ -46,15 +46,16 @@
 ## Preparation
 
 - Clone Repo.
-- Create folder called "**creds**"
-  - Create file called "**ansible-keypair.pem**"
-    - run `chmod 600 ansible-keypair.pem`
+- ~~Create folder called "**creds**"~~
+  - ~~Create file called "**ansible-keypair.pem**"~~
+    - ~~run `chmod 600 ansible-keypair.pem`~~
     - file content structure should be:
       ```
       -----BEGIN RSA PRIVATE KEY-----
       <PASTE_PEM_KEY_HERE>
       -----END RSA PRIVATE KEY-----
       ```
+      The above is no longer required since script was updated in the [Perks Section](#Perks) section to be done automatically.
   - Create file called "**aws_creds**"
     - file content Structure should be:
       ```json 
