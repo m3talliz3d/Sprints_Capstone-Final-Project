@@ -55,7 +55,9 @@
       <PASTE_PEM_KEY_HERE>
       -----END RSA PRIVATE KEY-----
       ```
-      The above is no longer required since script was updated in the [Perks Section](#Perks) section to be done automatically.
+      **The above is no longer required since script was updated in the [Perks Section](#Perks) section to be done automatically.**
+      
+      <br>
   - Create file called "**aws_creds**"
     - file content Structure should be:
       ```json 
