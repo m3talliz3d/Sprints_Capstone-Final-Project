@@ -73,8 +73,9 @@
 
 ## Accessing Deployments
 
-### Access to EC2
-To access EC2 instance via ssh you can run `ssh -i /creds/ansible-keypair.pem aws.metallized.project`.
+### ~~Access to EC2~~
+~~To access EC2 instance via ssh you can run `ssh -i /creds/ansible-keypair.pem aws.metallized.project`.~~
+Has been implemented in [Perks Section](#Perks) and now you just need to use `ssh aws.metallized.project` only since ssh_config file include the full path for the PEM file
 ### Access to Jenkins UI
 To access jenkins UI you can use the IP of the EC2, you can get the ip using 3 differernt methods:
   - run `grep aws.metalllized.project /etc/hosts`
