@@ -24,18 +24,6 @@ create_include_config_ssh(){
   fi
 }
 
-
-
-
-create_config_file(){
-  `cat << EOT > creds/config
-  Host aws.metallized.project
-    HostName aws.metallized.project
-    User ubuntu
-    IdentityFile $CAPSTONE_PROJECT/creds/ansible-keypair.pem
-    StrictHostKeyChecking no`
-}
-
 create_pem_file(){
   terraform -chdir=terraform output private_key_pem | grep -v EOT > creds/ansible-keypair.pem && chmod 600 creds/ansible-keypair.pem
 }

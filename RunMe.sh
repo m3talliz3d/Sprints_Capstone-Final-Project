@@ -7,6 +7,7 @@ source scripts/config_ssh_modification.sh
 source scripts/infra_deployment.sh
 source scripts/echo_scripts.sh
 source scripts/cleanup.sh
+source scripts/templates.sh
 
 export CAPSTONE_PROJECT=$PWD
 #echo $CAPSTONE_PROJECT
