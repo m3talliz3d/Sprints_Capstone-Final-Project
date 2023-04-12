@@ -6,6 +6,7 @@ set -eu
 source scripts/config_ssh_modification.sh
 source scripts/infra_deployment.sh
 source scripts/echo_scripts.sh
+source scripts/cleanup.sh
 
 export CAPSTONE_PROJECT=$PWD
 #echo $CAPSTONE_PROJECT
@@ -33,7 +34,15 @@ do
   create_config_file 2>/dev/null && chmod 600 creds/config
   create_include_config_ssh;;
 
-  2) ;;
+  2)
+  # Script: infra_deployment
+  terraform_deploy
+  ansible_deploy
+  clear
+  # script: echo_scripts
+  echo_terraform_deploy
+  echo_ansible_ansible
+  ;;
 
   3)
   # Script: infra_deployment
