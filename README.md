@@ -38,7 +38,7 @@
 - :x: Jenkins: Script to help Dev change AWS_SECRET_ACCESS_ID.
 
 **Security:**
-- :x: Checksum: Add md5 Checksum for scripts to verify scripts integrity sice you already provide sensitive credentials.
+- :x: Checksum: Add md5 Checksum for scripts to verify scripts integrity since you already provide sensitive credentials.
 <br><br>
 
 ## Prerequisites (Tools)
