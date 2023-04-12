@@ -14,13 +14,13 @@
 
 ## Perks
 **Scripts:**
-- :construction: Script: Create a "case" script to provide multiple options to deployment.
+- :zap: Script: Create a "case" script to provide multiple options to deployment.
   - :white_check_mark: option 1: Prepare Credential folder.
-  - :x: Option 2: Run Terrafrom > Run Ansible.
+  - :white_check_mark: Option 2: Run Terrafrom > Run Ansible.
   - :white_check_mark: Option 3: Run Terraform.
-  - :x: Option 4: Run Asible.
+  - :white_check_mark: Option 4: Run Asible.
   - :white_check_mark: Option 5: Detroy Terraform.
-  - :x: Option 6: Cleanup creds & revert ssh_config changes.
+  - :white_check_mark: Option 6: Cleanup creds & revert ssh_config changes.
 - :x: Script: Create "creds" directory and include the required credentials.
 - :white_check_mark: Script: append "<project_directory>/creds/config" in ~/.ssh/config file.
 - :white_check_mark: Script: Remove added line only to "~/.ssh/config" file as a cleanup process.
