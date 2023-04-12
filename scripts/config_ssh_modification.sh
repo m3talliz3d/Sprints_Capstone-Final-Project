@@ -25,9 +25,7 @@ create_include_config_ssh(){
 }
 
 
-remove_include_config_ssh(){
-  sed -i "/creds/d" ~/.ssh/config
-}
+
 
 create_config_file(){
   `cat << EOT > creds/config
