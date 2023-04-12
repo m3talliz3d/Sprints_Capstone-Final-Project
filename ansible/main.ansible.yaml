@@ -36,7 +36,7 @@
 
     - name: Download Jenkins backup to /var/lib/
       ansible.builtin.get_url:
-        url: https://filebin.net/v489h8vczzyirm5q/jenkins_backup.tar
+        url: https://onedrive.live.com/download?cid=6BD081CF2D2E1046&resid=6BD081CF2D2E1046%211899&authkey=AIuLiaaMq5WbDxU
         dest: /var/lib/jenkins_backup.tar
         checksum: sha256:5467967b867ed13e89394cdda428dae143273151429ac9fd86bc19c5ecee34cd
 
