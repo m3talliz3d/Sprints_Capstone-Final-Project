@@ -7,3 +7,7 @@ terraform_deploy(){
 terraform_destroy(){
   terraform -chdir=terraform/ destroy --auto-approve
 }
+
+ansible_deploy(){
+  sh -c 'cd ansible/ && ansible-playbook main.ansible.yaml'
+}

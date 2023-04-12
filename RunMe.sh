@@ -1,15 +1,16 @@
 #!/bin/bash
 # Script is not complete, please avoid using it.
 
+set -eu
+
 source scripts/config_ssh_modification.sh
 source scripts/infra_deployment.sh
+source scripts/echo_scripts.sh
 
 export CAPSTONE_PROJECT=$PWD
-echo $CAPSTONE_PROJECT
-hello_world
-#sleep 5
+#echo $CAPSTONE_PROJECT
 
-
+clear
 EXIT=0
 while [ $EXIT -ne 1 ]
 do
@@ -26,24 +27,48 @@ do
   read num
   case $num in
 
-  q) EXIT=1
-    echo "Exiting..."
-    sleep 3;;
   1)
   mkdir -p creds
+  # Script: config_ssh_modification
   create_config_file 2>/dev/null && chmod 600 creds/config
-  echo "test";;
+  create_include_config_ssh;;
+
   2) ;;
-  3) terraform_deploy
+
+  3)
+  # Script: infra_deployment
+  terraform_deploy
+  # Script: config_ssh_modification
   create_pem_file
   clear
-  echo "##################################"
-  echo "Terrafrom Deployment is successful"
-  echo "##################################"
+  # script: echo_scripts
+  echo_terraform_deploy
   break;;
-  4) ;;
-  5) terraform_destroy;;
-  6) ;;
-  *)echo "You have chosen unidentified number, try again..."
+
+  4)
+  # Script: infra_deployment
+  ansible_deploy
+  # script: echo_scripts
+  echo_ansible_ansible
+  break;;
+
+  5)
+  # Script: infra_deployment
+  terraform_destroy
+  clear
+  # script: echo_scripts
+  echo_terraform_destroy
+  ;;
+
+  6) 
+  remove_include_config_ssh;;
+
+  q)
+  EXIT=1
+  echo "Exiting..."
+  sleep 3;;
+
+  *)
+  echo "You have chosen unidentified number, try again..."
   esac
 done
