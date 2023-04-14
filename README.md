@@ -48,7 +48,7 @@
 
 ## Preparation
 
-- Clone Repo.
+- ### Clone Repo.
 - ~~Create folder called "**creds**"~~
   - ~~Create file called "**ansible-keypair.pem**"~~
     - ~~run `chmod 600 ansible-keypair.pem`~~
@@ -69,6 +69,13 @@
       "AWS_SECRET_ACCESS_KEY" : "<YOUR_AWS_KEY>"
       }
       ```
+- ### On Terraform destroy you will have issue with deleteing VPC and it will fail, workaround:
+  - login to AWS console and navigate to EC2
+    - Go to loadbalancer and delete ELB.
+    - Then navigate to Network Interfaces and delete any created.
+  - Navigate to VPC:
+    - go to "Your VPC" and delete the created VPC.
+    - Run the script again and choose option "5".
 
 ## Deployment
 1. navigate to terraform directory and run `terrafrom apply`. Once completed successfully, proceed to step 2.
