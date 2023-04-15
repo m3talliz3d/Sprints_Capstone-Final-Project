@@ -20,7 +20,7 @@
 - Ansible [Click here to install](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 
 ## Perks
-**Scripts:**
+#### **Scripts:**
 - :zap: Script: Create a "case" script to provide multiple options to deployment.
   - :white_check_mark: option 1: Prepare Credential folder.
   - :white_check_mark: Option 2: Run Terrafrom > Run Ansible.
@@ -33,18 +33,18 @@
 - :white_check_mark: Script: Remove added line only to "~/.ssh/config" file as a cleanup process.
 <br>
 
-**Terraform:**
+#### **Terraform:**
 - :white_check_mark: Terraform: Add IP & FQDN to hosts file on EC2 creation.
 - :white_check_mark: Terraform: Remove IP & FQDN to hosts file on EC2 Destroy.
 - :white_check_mark: Terrafrom: Output PEM file key to `creds/ansible-keypair.pem`
 <br>
 
-**Jenkins:**
+#### **Jenkins:**
 - :white_check_mark: Jenkins: Script to help Dev Change Github token.
 - :white_check_mark: Jenkins: Script to help Dev change AWS_SECRET_ACCESS_KEY.
 - :white_check_mark: Jenkins: Script to help Dev change AWS_SECRET_ACCESS_ID.
 
-**Security:**
+#### **Security:**
 - :white_check_mark: Checksum: Scripts - Add md5 Checksum for scripts to verify scripts integrity since you already provide sensitive credentials.
 - :white_check_mark: Checksum: Ansible Playbook - sh256 check on jenkins backup restoration
 <br><br>
@@ -52,6 +52,10 @@
 
 ## Preparation
 <text style="color:darkred">*Note: This step is crucial for the infrastructer to get deployed.*</text>
+<br>
+
+**Attention:** *Script will perform checksum verification on all the scripts in `creds` directory, in case any change occured in the scripts you will be aware. [Checksum perk](#security) has been included in the script make sure that your credentials are used safely and no modification has been performed.*
+
 - Clone Repo.
 - Prepare credentials:
   - Github token
@@ -62,12 +66,12 @@
   - Paste AWS KEY & AWS ID as requested. 
 
 ## Deployment
-#### Deploy Project
+#### Deploy Project:
 - Run `RunMe.sh` script:
   - Choose **option "2"** to deploy Infrastructure
     - In case issue occuured during **option "2"** you can use **option "3"** and/or **option "4"**.
 
-#### Push credentials to Jenkins (Encoded)
+#### Push credentials to Jenkins (Encoded):
 *<text style="color:darkred">Note: Jenkins service will get restarted at the end of this process.*</text>
 <br>
 *Note: all encoding is done on the remote server*
@@ -76,12 +80,12 @@
   - option "5" will automatically use AWS credentials in creds directory.
   - give it some time to reflect
 
-#### Destroy Deployment
+#### Destroy Deployment:
 *<text style="color:darkred">Note: Please refer to [known issues](#known-issues) section as there is ongoing issue with fully destroying infrastruture*</text>. Fix still in progress.
 - Run `RunMe.sh` script:
   - Choose **option "6"** to destroy the infrastructure.
 
-#### Cleanup
+#### Cleanup:
 - Run `RunMe.sh` script:
   - **option "7"** will perform:
     - Deletion of "creds" directory.
@@ -89,13 +93,16 @@
 
 
 
-## SSH to EC2 instace
-
+## Tips
+### SSH to EC2 instace:
 To access jenkins UI you can use the IP of the EC2, you can get the ip using 3 differernt methods:
   - run `grep aws.metalllized.project /etc/hosts`
   - run from within the `terraform` directory `terraform output public_ip`
   - or run `nslookup aws.metallized.project localhost`
 
+### Filter git commits by tool:
+To filter commits by `terrafrom` or `jenkins` or `script` type this command 
+`git log --decorate=short --all | grep -i <tool_name>` in the terminal
 
 ## Known Issues
 - #### ssh to `aws.metallized.project` show error
