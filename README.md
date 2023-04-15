@@ -51,7 +51,7 @@
 
 
 ## Preparation
-<text style="color:darkred">*Note: This step is crucial for the infrastructe to get deployed.*</text>
+<text style="color:darkred">*Note: This step is crucial for the infrastructer to get deployed.*</text>
 - Clone Repo.
 - Prepare credentials:
   - Github token
