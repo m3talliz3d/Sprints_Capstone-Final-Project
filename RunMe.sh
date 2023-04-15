@@ -1,5 +1,4 @@
 #!/bin/bash
-# Script is not complete, please avoid using it.
 
 set -eu
 
@@ -8,9 +7,9 @@ source scripts/infra_deployment.sh
 source scripts/echo_scripts.sh
 source scripts/cleanup.sh
 source scripts/templates.sh
+source scripts/jenkins_p1_main.sh
 
 export CAPSTONE_PROJECT=$PWD
-#echo $CAPSTONE_PROJECT
 
 clear
 EXIT=0
@@ -25,7 +24,7 @@ do
   echo "5 - Detroy Terraform (no-confirmation)"
   echo "6 - Cleanup"
   echo "7 - Create AWS cred Template"
-  echo "8 - if statement test"
+  echo "8 - Push Passwords to Jenkins"
   echo "q - Exit"
 
   read num
@@ -84,7 +83,8 @@ do
   create_aws_creds;;
 
   8)
-  ;;
+  jenkins_password
+  break;;
   
   q)
   EXIT=1
