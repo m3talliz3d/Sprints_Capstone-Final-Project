@@ -18,12 +18,16 @@ do
   echo "Choose one of the options to run the capstone project: (q to quit)"
 
   echo "1 - Prepare Credentials directory"
+  echo "             --------            "
   echo "2 - Run Terrafrom then Run Playbook Ansible"
+  echo "             --------            "
   echo "3 - Run Terrafrom Only"
   echo "4 - Run Ansible Playbook Only"
-  echo "5 - Push credentials to Jenkins | Detroy Terraform (no-confirmation)"
-  echo "6 - Destroy Infrastructure (no-confirmation) | Cleanup"
-  echo "7 - Cleaup | Create AWS cred Template"
+  echo "             --------            "
+  echo "5 - Push credentials to Jenkins"
+  echo "             --------            "
+  echo "6 - Destroy Infrastructure (no-confirmation)"
+  echo "7 - Cleaup"
   echo "q - Exit"
 
   read num
@@ -81,7 +85,11 @@ do
   break;;
   
   7)
-  remove_include_config_ssh;;
+  remove_include_config_ssh
+  echo_remove_include_config_ssh
+  delete_creds_dir
+  echo_delete_creds_dir
+  break;;
   
   q)
   EXIT=1
@@ -93,4 +101,4 @@ do
   esac
 done
 
-echo "Thank you for using the script"
+echo -e "\n **--Thank you for using the script--**"
