@@ -27,3 +27,7 @@ create_include_config_ssh(){
 create_pem_file(){
   terraform -chdir=terraform output private_key_pem | grep -v EOT > creds/ansible-keypair.pem && chmod 600 creds/ansible-keypair.pem
 }
+
+remove_creds_directory(){
+  rm -rf creds/
+}

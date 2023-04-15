@@ -21,10 +21,9 @@ do
   echo "2 - Run Terrafrom then Run Playbook Ansible"
   echo "3 - Run Terrafrom Only"
   echo "4 - Run Ansible Playbook Only"
-  echo "5 - Detroy Terraform (no-confirmation)"
-  echo "6 - Cleanup"
-  echo "7 - Create AWS cred Template"
-  echo "8 - Push Passwords to Jenkins"
+  echo "5 - Push credentials to Jenkins | Detroy Terraform (no-confirmation)"
+  echo "6 - Destroy Infrastructure (no-confirmation) | Cleanup"
+  echo "7 - Cleaup | Create AWS cred Template"
   echo "q - Exit"
 
   read num
@@ -34,7 +33,8 @@ do
   mkdir -p creds
   # Script: config_ssh_modification
   create_config_file 2>/dev/null && chmod 600 creds/config
-  create_include_config_ssh;;
+  create_include_config_ssh
+  create_aws_creds;;
 
   2)
   # Script: infra_deployment
@@ -69,22 +69,19 @@ do
   break;;
 
   5)
+  jenkins_password
+  break;;
+
+  6)
   # Script: infra_deployment
   terraform_destroy
   clear
   # script: echo_scripts
   echo_terraform_destroy
   break;;
-
-  6) 
-  remove_include_config_ssh;;
   
   7)
-  create_aws_creds;;
-
-  8)
-  jenkins_password
-  break;;
+  remove_include_config_ssh;;
   
   q)
   EXIT=1
