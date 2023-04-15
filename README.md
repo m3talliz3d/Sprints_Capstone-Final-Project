@@ -1,8 +1,5 @@
 # Automating Infrastructure Deployment and CI/CD with DevOps 🚀
 
-## Table of content
-[Introduction](#Introduction)
-
 ## Introduction
  This project aims to automate the deployment of infrastructure and enable continuous integration and continuous deployment (CI/CD) for a web application. The infrastructure is deployed using Terraform, which sets up an EC2 instance, Elastic Container Registry (ECR), and Elastic Kubernetes Service (EKS). Ansible is then used to install necessary tools such as Jenkins, Docker, Kubectl, and AWS-cli on the EC2 instance.
 
@@ -10,7 +7,13 @@
 <br>
 
 ## Infrastructure setup
- With the infrastructure set up, a Jenkins pipeline is created to detect changes in the code on GitHub. Whenever a change is detected, a Docker image is built and pushed to ECR. The pipeline then deploys the pods and deployments using the newly pushed image on the ECR, ensuring that the latest code changes are always available on the webserver backed by MySQL. This process enables quick and efficient deployment of updates to the web application, while minimizing human error and downtime.
+ With the infrastructure set up, a **Jenkins** pipeline is created to detect changes in the code on **GitHub**. Whenever a change is detected, a **Docker image** is built and pushed to **ECR**. 
+ <br>
+
+ The pipeline then deploys the pods and deployments using the newly pushed image on the ECR, ensuring that the latest code changes are always available on the webserver backed by MySQL. 
+ <br>
+
+ This process enables quick and efficient deployment of updates to the web application, while minimizing human error and downtime.
 
 ## Perks
 **Scripts:**
@@ -38,7 +41,8 @@
 - :white_check_mark: Jenkins: Script to help Dev change AWS_SECRET_ACCESS_ID.
 
 **Security:**
-- :x: Checksum: Add md5 Checksum for scripts to verify scripts integrity since you already provide sensitive credentials.
+- :white_check_mark: Checksum: Scripts - Add md5 Checksum for scripts to verify scripts integrity since you already provide sensitive credentials.
+- :white_check_mark: Checksum: Ansible Playbook - sh256 check on jenkins backup restoration
 <br><br>
 
 ## Prerequisites (Tools)
@@ -47,49 +51,47 @@
 
 
 ## Preparation
+<text style="color:darkred">*Note: This step is crucial for the infrastructe to get deployed.*</text>
+- Clone Repo.
+- Prepare credentials:
+  - Github token
+  - AWS ID
+  - AWS KEY
+- Run `RunMe.sh` script:
+  - Choose **option "1"** to prepare the credentials directory.
+  - Paste AWS KEY & AWS ID as requested. 
 
-- ### Clone Repo.
-- ~~Create folder called "**creds**"~~
-  - ~~Create file called "**ansible-keypair.pem**"~~
-    - ~~run `chmod 600 ansible-keypair.pem`~~
-    - file content structure should be:
-      ```
-      -----BEGIN RSA PRIVATE KEY-----
-      <PASTE_PEM_KEY_HERE>
-      -----END RSA PRIVATE KEY-----
-      ```
-      **The above is no longer required since script was updated in the [Perks Section](#Perks) section to be done automatically.**
-      
-      <br>
-  - Create file called "**aws_creds**"
-    - file content Structure should be:
-      ```json 
-      {
-      "AWS_ACCESS_KEY_ID" : "<YOUR_AWS_ID>",
-      "AWS_SECRET_ACCESS_KEY" : "<YOUR_AWS_KEY>"
-      }
-      ```
-- ### On Terraform destroy you will have issue with deleteing VPC and it will fail, workaround:
-  - login to AWS console and navigate to EC2
-    - Go to loadbalancer and delete ELB.
-    - Then navigate to Network Interfaces and delete any created.
-  - Navigate to VPC:
-    - go to "Your VPC" and delete the created VPC.
-    - Run the script again and choose option "5".
 
 ## Deployment
-1. navigate to terraform directory and run `terrafrom apply`. Once completed successfully, proceed to step 2.
-2. Navigate to Ansible directory and run  `ansible-playbook main.ansible`.yaml
-    -  NOTE: Ansible will use the configured host name which were added to hosts file [/etc/hosts].
-    - hostname used in this repo for the EC2 instance is `aws.metallized.project`.
+#### Deploy Project
+- Run `RunMe.sh` script:
+  - Choose **option "2"** to deploy Infrastructure
+    - In case issue occuured during **option "2"** you can use **option "3"** and/or **option "4"**.
+
+#### Push credentials to Jenkins (Encoded)
+*<text style="color:darkred">Note: Jenkins service will get restarted at the end of this process.*</text>
+<br>
+*Note: all encoding is done on the remote server*
+- Run `RunMe.sh` script:
+  - Choose **option "5"** (prepare Github Token) and paste the Github token when requested.
+  - option "5" will automatically use AWS credentials in creds directory.
+  - give it some time to reflect
+
+#### Destroy Deployment
+*<text style="color:darkred">Note: Please refer to [known issues](#known-issues) section as there is ongoing issue with fully destroying infrastruture*</text>. Fix still in progress.
+- Run `RunMe.sh` script:
+  - Choose **option "6"** to destroy the infrastructure.
+
+#### Cleanup
+- Run `RunMe.sh` script:
+  - **option "7"** will perform:
+    - Deletion of "creds" directory.
+    - Revert back change to `~/.ssh/config`
 
 
-## Accessing Deployments
 
-### ~~Access to EC2~~
-~~To access EC2 instance via ssh you can run `ssh -i /creds/ansible-keypair.pem aws.metallized.project`.~~
-Has been implemented in [Perks Section](#Perks) and now you just need to use `ssh aws.metallized.project` only since ssh_config file include the full path for the PEM file
-### Access to Jenkins UI
+## SSH to EC2 instace
+
 To access jenkins UI you can use the IP of the EC2, you can get the ip using 3 differernt methods:
   - run `grep aws.metalllized.project /etc/hosts`
   - run from within the `terraform` directory `terraform output public_ip`
@@ -97,7 +99,7 @@ To access jenkins UI you can use the IP of the EC2, you can get the ip using 3 d
 
 
 ## Known Issues
-- ### ssh to `aws.metallized.project` show error
+- #### ssh to `aws.metallized.project` show error
   ```bash
   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
@@ -115,6 +117,15 @@ To access jenkins UI you can use the IP of the EC2, you can get the ip using 3 d
   - #### Solution
     - type `ssh-keygen -R aws.metallized.project` in the terminal and it will remove the old fingerprint
 
+---
+
+- #### On Terraform destroy you will have issue with deleteing VPC and it will fail, workaround:
+  - login to AWS console and navigate to EC2
+    - Go to loadbalancer and delete ELB.
+    - Then navigate to Network Interfaces and delete any created.
+  - Navigate to VPC:
+    - go to "Your VPC" and delete the created VPC.
+    - Run the script again and choose option "5".
 
 ## Issues & Contributions
 So far I am not familiar with maintaining issues on the project, yet it is still work in progress and trying to make sure that most issues is resolved, I will keep updating the [Issues Section](#Known-Issues).
