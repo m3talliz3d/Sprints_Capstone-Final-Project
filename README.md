@@ -6,7 +6,7 @@
 ![image](sprints_capstone_mod.png)
 <br>
 
-## Infrastructure setup
+## Infrastructure setup overview
  With the infrastructure set up, a **Jenkins** pipeline is created to detect changes in the code on **GitHub**. Whenever a change is detected, a **Docker image** is built and pushed to **ECR**. 
  <br>
 
@@ -14,6 +14,10 @@
  <br>
 
  This process enables quick and efficient deployment of updates to the web application, while minimizing human error and downtime.
+
+## Prerequisites (Tools)
+- Terraform [Click here to install](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+- Ansible [Click here to install](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 
 ## Perks
 **Scripts:**
@@ -45,10 +49,6 @@
 - :white_check_mark: Checksum: Ansible Playbook - sh256 check on jenkins backup restoration
 <br><br>
 
-## Prerequisites (Tools)
-- Terraform [Click here to install](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
-- Ansible [Click here to install](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
-
 
 ## Preparation
 <text style="color:darkred">*Note: This step is crucial for the infrastructe to get deployed.*</text>
@@ -60,7 +60,6 @@
 - Run `RunMe.sh` script:
   - Choose **option "1"** to prepare the credentials directory.
   - Paste AWS KEY & AWS ID as requested. 
-
 
 ## Deployment
 #### Deploy Project
@@ -114,7 +113,7 @@ To access jenkins UI you can use the IP of the EC2, you can get the ip using 3 d
   ECDSA host key for aws.metallized.project has changed and you have requested strict checking.
   Host key verification failed.
   ```
-  - #### Solution
+  - ##### Solution
     - type `ssh-keygen -R aws.metallized.project` in the terminal and it will remove the old fingerprint
 
 ---
