@@ -26,8 +26,10 @@
   - :white_check_mark: Option 2: Run Terrafrom > Run Ansible.
   - :white_check_mark: Option 3: Run Terraform.
   - :white_check_mark: Option 4: Run Asible.
-  - :white_check_mark: Option 5: Detroy Terraform.
-  - :white_check_mark: Option 6: Cleanup creds & revert ssh_config changes.
+  - :x: Option 5: SSH to EC2. (coming soon...)
+  - :white_check_mark: Option 6: Push credentials to Jenkins.
+  - :white_check_mark: Option 7: Detroy Terraform.
+  - :white_check_mark: Option 8: Cleanup creds & revert ssh_config changes.
 - :white_check_mark: Script: Create "creds" directory and include the required credentials.
 - :white_check_mark: Script: append "<project_directory>/creds/config" in ~/.ssh/config file.
 - :white_check_mark: Script: Remove added line only to "~/.ssh/config" file as a cleanup process.
@@ -132,6 +134,11 @@ To filter commits by `terrafrom` or `jenkins` or `script` type this command
   - Navigate to VPC:
     - go to "Your VPC" and delete the created VPC.
     - Run the script again and choose option "5".
+
+## Planned Changes
+- [ ] Ansible: Change Ansible directory to Galaxy.
+- [ ] Terrafrom: Change Teraaform directory to  Modules.
+- [ ] Terraform: Import Network interfaces & ELB to Terraform to fix issue in the [known issues section](#on-terraform-destroy-you-will-have-issue-with-deleteing-vpc-and-it-will-fail-workaround)
 
 ## Issues & Contributions
 So far I am not familiar with maintaining issues on the project, yet it is still work in progress and trying to make sure that most issues is resolved, I will keep updating the [Issues Section](#Known-Issues).
