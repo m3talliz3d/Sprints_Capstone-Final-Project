@@ -24,6 +24,8 @@ do
   echo "4 - Run Ansible Playbook Only"
   echo "5 - Detroy Terraform (no-confirmation)"
   echo "6 - Cleanup"
+  echo "7 - Create AWS cred Template"
+  echo "8 - if statement test"
   echo "q - Exit"
 
   read num
@@ -37,13 +39,18 @@ do
 
   2)
   # Script: infra_deployment
+  echo "Deploying Infrastructure..."
   terraform_deploy
+  create_pem_file
+  echo "Preparing ssh config in 15s"
+  sleep 15
+  echo "pushing Ansible configuration to EC2..."
   ansible_deploy
   clear
   # script: echo_scripts
   echo_terraform_deploy
   echo_ansible_ansible
-  ;;
+  break;;
 
   3)
   # Script: infra_deployment
@@ -68,11 +75,17 @@ do
   clear
   # script: echo_scripts
   echo_terraform_destroy
-  ;;
+  break;;
 
   6) 
   remove_include_config_ssh;;
+  
+  7)
+  create_aws_creds;;
 
+  8)
+  ;;
+  
   q)
   EXIT=1
   echo "Exiting..."
@@ -82,3 +95,5 @@ do
   echo "You have chosen unidentified number, try again..."
   esac
 done
+
+echo "Thank you for using the script"
