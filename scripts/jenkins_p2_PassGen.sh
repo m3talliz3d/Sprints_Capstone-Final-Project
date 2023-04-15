@@ -43,4 +43,5 @@ sed "s|changeme|$AWS_ID|" $JEN_HOME/encode_password.groovy > $TEMP
 PASSW=`java -jar $JEN_HOME/jenkins-cli.jar -s http://localhost:8080 -auth admin:ChangePassword groovy = < $TEMP`
 id_aws_id
 
+sudo systemctl restart jenkins
 rm $TEMP
