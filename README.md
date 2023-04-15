@@ -21,7 +21,7 @@
   - :white_check_mark: Option 4: Run Asible.
   - :white_check_mark: Option 5: Detroy Terraform.
   - :white_check_mark: Option 6: Cleanup creds & revert ssh_config changes.
-- :x: Script: Create "creds" directory and include the required credentials.
+- :white_check_mark: Script: Create "creds" directory and include the required credentials.
 - :white_check_mark: Script: append "<project_directory>/creds/config" in ~/.ssh/config file.
 - :white_check_mark: Script: Remove added line only to "~/.ssh/config" file as a cleanup process.
 <br>
@@ -33,9 +33,9 @@
 <br>
 
 **Jenkins:**
-- :x: Jenkins: Script to help Dev Change Github token.
-- :x: Jenkins: Script to help Dev change AWS_SECRET_ACCESS_KEY.
-- :x: Jenkins: Script to help Dev change AWS_SECRET_ACCESS_ID.
+- :white_check_mark: Jenkins: Script to help Dev Change Github token.
+- :white_check_mark: Jenkins: Script to help Dev change AWS_SECRET_ACCESS_KEY.
+- :white_check_mark: Jenkins: Script to help Dev change AWS_SECRET_ACCESS_ID.
 
 **Security:**
 - :x: Checksum: Add md5 Checksum for scripts to verify scripts integrity since you already provide sensitive credentials.
