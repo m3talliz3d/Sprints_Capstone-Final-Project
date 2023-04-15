@@ -2,6 +2,36 @@
 
 set -eu
 
+############ SCRIPT CHECKSUM VERIFICATION START ####################
+declare -A scripts_checksum=(
+["scripts/ec2_public_ip_add.sh"]="scripts/ec2_public_ip_add.sh.checksum"
+["scripts/ec2_public_ip_remove.sh"]="scripts/ec2_public_ip_remove.sh.checksum"
+["scripts/ansible_dock_aws_kube.sh"]="scripts/ansible_dock_aws_kube.sh.checksum"
+["scripts/config_ssh_modification.sh"]="scripts/config_ssh_modification.sh.checksum"
+["scripts/infra_deployment.sh"]="scripts/infra_deployment.sh.checksum"
+["scripts/echo_scripts.sh"]="scripts/echo_scripts.sh.checksum"
+["scripts/cleanup.sh"]="scripts/cleanup.sh.checksum"
+["scripts/templates.sh"]="scripts/templates.sh.checksum"
+["scripts/jenkins_p1_main.sh"]="scripts/jenkins_p1_main.sh.checksum"
+["scripts/jenkins_p2_PassGen.sh"]="scripts/jenkins_p2_PassGen.sh.checksum"
+)
+
+for script in "${!scripts_checksum[@]}"; do
+  checksum_generated=$(sha256sum $script | cut -d ' ' -f1)
+  #echo "generated $checksum_generated"
+  checksum_expected=$(cat ${scripts_checksum[$script]})
+  #echo "expected  $checksum_expected"
+  if [ $checksum_generated != $checksum_expected ]; then
+    echo -e "######################################\nERROR: $script has been modified"
+    echo -e "Please verify that your $HOSTNAME is secure\n######################################\n"
+    echo -e "Note: To remove the security check\nYou can remove 'SCRIPT CHECKSUM VERIFICATION' section\nTo bypass check, yet it is not recommended."
+    exit 1
+  fi
+done
+echo -e "\n######################################\nSUCCESS: Scripts has not been modified\n######################################\n"
+sleep 2
+############ SCRIPT CHECKSUM VERIFICATION END ####################
+
 source scripts/config_ssh_modification.sh
 source scripts/infra_deployment.sh
 source scripts/echo_scripts.sh
@@ -11,7 +41,7 @@ source scripts/jenkins_p1_main.sh
 
 export CAPSTONE_PROJECT=$PWD
 
-clear
+
 EXIT=0
 while [ $EXIT -ne 1 ]
 do
