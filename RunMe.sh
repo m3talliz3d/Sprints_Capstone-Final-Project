@@ -54,10 +54,11 @@ do
   echo "3 - Run Terrafrom Only"
   echo "4 - Run Ansible Playbook Only"
   echo "             --------            "
-  echo "5 - Push credentials to Jenkins"
+  echo "5 - SSH to the deployed EC2 instance (Will work Soon..)"
+  echo "6 - Push credentials to Jenkins"
   echo "             --------            "
-  echo "6 - Destroy Infrastructure (no-confirmation)"
-  echo "7 - Cleaup"
+  echo "7 - Destroy Infrastructure (no-confirmation)"
+  echo "8 - Cleaup"
   echo "q - Exit"
 
   read num
@@ -103,10 +104,13 @@ do
   break;;
 
   5)
+  ;;
+
+  6)
   jenkins_password
   break;;
 
-  6)
+  7)
   # Script: infra_deployment
   terraform_destroy
   clear
@@ -114,7 +118,7 @@ do
   echo_terraform_destroy
   break;;
   
-  7)
+  8)
   remove_include_config_ssh
   echo_remove_include_config_ssh
   delete_creds_dir
