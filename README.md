@@ -9,10 +9,10 @@
   - [Infrastructure setup overview](#infrastructure-setup-overview)
   - [Prerequisites (Tools)](#prerequisites-tools)
   - [Perks](#perks)
-      - [**Scripts:**](#scripts)
-      - [**Terraform:**](#terraform)
-      - [**Jenkins:**](#jenkins)
-      - [**Security:**](#security)
+      - [Scripts:](#scripts)
+      - [Terraform:](#terraform)
+      - [Jenkins:](#jenkins)
+      - [Security:](#security)
   - [Preparation](#preparation)
   - [Deployment](#deployment)
       - [Deploy Project:](#deploy-project)
@@ -48,7 +48,7 @@
 - Ansible [Click here to install](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 
 ## Perks
-#### **Scripts:**
+#### Scripts:
 - :zap: Script: Create a "case" script to provide multiple options to deployment.
   - :white_check_mark: option 1: Prepare Credential folder.
   - :white_check_mark: Option 2: Run Terrafrom > Run Ansible.
@@ -63,18 +63,18 @@
 - :white_check_mark: Script: Remove added line only to "~/.ssh/config" file as a cleanup process.
 <br>
 
-#### **Terraform:**
+#### Terraform:
 - :white_check_mark: Terraform: Add IP & FQDN to hosts file on EC2 creation.
 - :white_check_mark: Terraform: Remove IP & FQDN to hosts file on EC2 Destroy.
 - :white_check_mark: Terrafrom: Output PEM file key to `creds/ansible-keypair.pem`
 <br>
 
-#### **Jenkins:**
+#### Jenkins:
 - :white_check_mark: Jenkins: Script to help Dev Change Github token.
 - :white_check_mark: Jenkins: Script to help Dev change AWS_SECRET_ACCESS_KEY.
 - :white_check_mark: Jenkins: Script to help Dev change AWS_SECRET_ACCESS_ID.
 
-#### **Security:**
+#### Security:
 - :white_check_mark: Checksum: Scripts - Add md5 Checksum for scripts to verify scripts integrity since you already provide sensitive credentials.
 - :white_check_mark: Checksum: Ansible Playbook - sh256 check on jenkins backup restoration
 <br><br>
