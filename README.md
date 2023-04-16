@@ -61,13 +61,11 @@
 - :white_check_mark: Script: Create "creds" directory and include the required credentials.
 - :white_check_mark: Script: append "<project_directory>/creds/config" in ~/.ssh/config file.
 - :white_check_mark: Script: Remove added line only to "~/.ssh/config" file as a cleanup process.
-<br>
 
 #### Terraform:
 - :white_check_mark: Terraform: Add IP & FQDN to hosts file on EC2 creation.
 - :white_check_mark: Terraform: Remove IP & FQDN to hosts file on EC2 Destroy.
 - :white_check_mark: Terrafrom: Output PEM file key to `creds/ansible-keypair.pem`
-<br>
 
 #### Jenkins:
 - :white_check_mark: Jenkins: Script to help Dev Change Github token.
