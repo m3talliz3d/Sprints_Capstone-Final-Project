@@ -82,7 +82,11 @@
 <text style="color:darkred">*Note: This step is crucial for the infrastructer to get deployed.*</text>
 <br>
 
-**Attention:** *Script will perform checksum verification on all the scripts in `creds` directory, in case any change occured in the scripts you will be aware. [Checksum perk](#security) has been included in the script make sure that your credentials are used safely and no modification has been performed.*
+<text style="color:green">**Jenkins Password="ChangePassword"**</text>
+
+<br>
+
+**Attention:** *Script will perform checksum verification on all the scripts in `creds` directory, in case any change occured in the scripts you will be aware. [Checksum perk](#security) has been included in the script to make sure that your credentials are used safely and no modification has been performed.*
 
 - Clone Repo.
 - Prepare credentials:
@@ -195,6 +199,7 @@ To filter commits by `terrafrom` or `jenkins` or `script` type this command
 
 ## Upcoming Changes
 - [ ] Ansible: Change Ansible directory to Galaxy.
+- [ ] Jenkins: Include changing admin password via playbook.
 - [ ] Terrafrom: Change Teraaform directory to  Modules.
 - [ ] Terraform: Import Network interfaces & ELB to Terraform to fix issue in the [known issues section](#on-terraform-destroy-you-will-have-issue-with-deleteing-vpc-and-it-will-fail-workaround)
 - [ ] Script: jenkins_p2_PassGen.sh - use a loop instead of repeating same command.
