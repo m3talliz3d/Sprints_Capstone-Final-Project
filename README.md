@@ -1,5 +1,33 @@
 # Automating Infrastructure Deployment and CI/CD with DevOps 🚀
 
+
+<details>
+  <summary> Table of Contents </summary>
+
+- [Automating Infrastructure Deployment and CI/CD with DevOps 🚀](#automating-infrastructure-deployment-and-cicd-with-devops-)
+  - [Introduction](#introduction)
+  - [Infrastructure setup overview](#infrastructure-setup-overview)
+  - [Prerequisites (Tools)](#prerequisites-tools)
+  - [Perks](#perks)
+      - [**Scripts:**](#scripts)
+      - [**Terraform:**](#terraform)
+      - [**Jenkins:**](#jenkins)
+      - [**Security:**](#security)
+  - [Preparation](#preparation)
+  - [Deployment](#deployment)
+      - [Deploy Project:](#deploy-project)
+      - [Push credentials to Jenkins (Encoded):](#push-credentials-to-jenkins-encoded)
+      - [Destroy Deployment:](#destroy-deployment)
+      - [Cleanup:](#cleanup)
+  - [Tips](#tips)
+    - [SSH to EC2 instace:](#ssh-to-ec2-instace)
+    - [Filter git commits by tool:](#filter-git-commits-by-tool)
+  - [Scripts Breakdown](#scripts-breakdown)
+  - [Known Issues](#known-issues)
+  - [Planned Changes](#planned-changes)
+  - [Issues \& Contributions](#issues--contributions)
+</details>
+
 ## Introduction
  This project aims to automate the deployment of infrastructure and enable continuous integration and continuous deployment (CI/CD) for a web application. The infrastructure is deployed using Terraform, which sets up an EC2 instance, Elastic Container Registry (ECR), and Elastic Kubernetes Service (EKS). Ansible is then used to install necessary tools such as Jenkins, Docker, Kubectl, and AWS-cli on the EC2 instance.
 
@@ -105,6 +133,9 @@ To access jenkins UI you can use the IP of the EC2, you can get the ip using 3 d
 ### Filter git commits by tool:
 To filter commits by `terrafrom` or `jenkins` or `script` type this command 
 `git log --decorate=short --all | grep -i <tool_name>` in the terminal
+
+## Scripts Breakdown
+
 
 ## Known Issues
 1. #### ssh to `aws.metallized.project` show error
