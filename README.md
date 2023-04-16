@@ -108,18 +108,18 @@
 <br>
 *Note: all encoding is done on the remote server*
 - Run `RunMe.sh` script:
-  - Choose **option "5"** (prepare Github Token) and paste the Github token when requested.
-  - option "5" will automatically use AWS credentials in creds directory.
+  - Choose **option "6"** (prepare Github Token) and paste the Github token when requested.
+  - **option "6"** will automatically use AWS credentials in creds directory.
   - give it some time to reflect
 
 #### Destroy Deployment:
 *<text style="color:darkred">Note: Please refer to [known issues](#known-issues) section as there is ongoing issue with fully destroying infrastruture*</text>. Fix still in progress.
 - Run `RunMe.sh` script:
-  - Choose **option "6"** to destroy the infrastructure.
+  - Choose **option "7"** to destroy the infrastructure.
 
 #### Cleanup:
 - Run `RunMe.sh` script:
-  - **option "7"** will perform:
+  - **option "8"** will perform:
     - Deletion of "creds" directory.
     - Revert back change to `~/.ssh/config`
 
