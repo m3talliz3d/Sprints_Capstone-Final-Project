@@ -24,7 +24,7 @@
     - [Filter git commits by tool:](#filter-git-commits-by-tool)
   - [Scripts Breakdown](#scripts-breakdown)
   - [Known Issues](#known-issues)
-  - [Planned Changes](#planned-changes)
+  - [Upcoming Changes](#upcoming-changes)
   - [Issues \& Contributions](#issues--contributions)
 </details>
 
@@ -135,7 +135,36 @@ To filter commits by `terrafrom` or `jenkins` or `script` type this command
 `git log --decorate=short --all | grep -i <tool_name>` in the terminal
 
 ## Scripts Breakdown
-
+| # | Script | Function | Description |
+| :-: | :---: | :---: | :--- |
+| 1 | ec2_public_ip_add.sh | -  | Export the generated EC2 IP from terraform and add it to  `/etc/hosts` with dns name `aws.metallized.project` |
+|  |  |  |  |
+| 2 | ec2_public_ip_remove.sh | - | The added entry in "ec2_public_ip_add.sh" script will be removed from `/etc/hosts` (Only the added entry will be removed)  |
+|  |  |  |  |
+| 3 | config_ssh_modification.sh | create_include_config_ssh | 1- Add the path to ssh `creds/config` file to `~/.ssh/config` <br> 2- If file is has data then it will append to first line <br> 3- If file is empty or not available it will get created and add the entry to it |
+|  |  | create_pem_file | Generated pem key from Terraform, create file in `creds/ansible-keypair.pem`, then overwrite the key to file |
+|  |  | remove_creds_directory | remove `creds` directory, this function is no lonfer used and replaced by funstion in "cleanup.sh" |
+|  |  |  |  |
+| 4 | infra_deployment.sh | terraform_deploy | Deploy EC2, ECR & EKS infrastructure includeing its network.  |
+|  |  | terraform_destroy | Destroy all terraform deployment (Auto Approve) |
+|  |  | ansible_deploy | Run Ansible playbook to deploy Jenkins and its dependencies |
+|  |  |  |  |
+| 5 | ansible_dock_aws_kube.sh | - | Used by Terraform `user data` to deploy Docker, awscli & kubectl to EC2 instance|
+|  |  |  |  |
+| 6.1 | jenkins_p1_main.sh | jenkins_password | collect credentials (Github token, aws KEY, aws ID) to be used by script "jenkins_p2_PassGen.sh". <br/> User need to provide github token when requested. <br/> AWS Key & ID will be imported from `creds/aws_creds`|
+|  |  |  |  |
+| 6.2 | jenkins_p2_PassGen.sh | Brief about the | Script process: <br/> <b>Note:</b><em> that script run on remote server inside the script shell not locally.</em> <br/> 1- Receive credentials from "jenkins_p1_main.sh ". <br/> 2- For each password: <br/> 2.1- password will be repalced in groovy script and saved to `temp` file. <br/> 2.2- `jenkins-cli.jar` will generate special encoded password. <br/> 2.3- Encoded password will be replaced in `credentials.xml` respectively. <br/> 3- Jenkins Service will restart for the new password to be used <br/> 4- `temp` file will deleted to remove any trace of passwords. <br> <b>Attention:<em> If you encoded passwords on any other jenkinks instance, it will not work, it must be performed on the current jenkins deployed instance </em></b>    |
+|  |  | pass_gen | Modify groovy script used by `jenkins-cli.jar` to replace the user's password then store it in variable called `PASSW` |
+|  |  | id_github | Replace Github password filed with the proivded Github password (encoded) |
+|  |  | id_aws_key | Replace AWS_KEY password filed with the proivded  AWS_KEY password (encoded) |
+|  |  | id_aws_id | Replace AWS_ID password filed with the proivded AWS_ID password (encoded) |
+|  |  |  |  |
+| 7 | templates.sh | create_config_file | Create file called `config` in project's `creds` directory and add the required information for the SSH'ing to `aws.metallized.project` <br/> Informatoin include hostname, User, IdentityFile & bypass fingerprint check.  <br/> File is used by Ansible & script option "5" |
+|  |  | create_aws_creds | Create file `aws_creds` under `creds` directory. <br/> Requires user to input AWS KEY & ID. <br/> overwrite the information to `aws_creds`. <br/> Used by terraform to deploy infrastructure on AWS.|
+|  |  |  |  |
+| 8 | cleanup.sh | remove_include_config_ssh | Remove the appended file from  `create_include_config_ssh` funtion in `config_ssh_modification.sh` script.  |
+|  |  | delete_creds_dir | Remove creds directory that contain AWS credentials, PEM file, ssh `config` file used by the project deployment. |
+| EOT | EOT | EOT | EOT |
 
 ## Known Issues
 1. #### ssh to `aws.metallized.project` show error
@@ -166,11 +195,11 @@ To filter commits by `terrafrom` or `jenkins` or `script` type this command
     - go to "Your VPC" and delete the created VPC.
     - Run the script again and choose option "5".
 
-## Planned Changes
+## Upcoming Changes
 - [ ] Ansible: Change Ansible directory to Galaxy.
 - [ ] Terrafrom: Change Teraaform directory to  Modules.
 - [ ] Terraform: Import Network interfaces & ELB to Terraform to fix issue in the [known issues section](#on-terraform-destroy-you-will-have-issue-with-deleteing-vpc-and-it-will-fail-workaround)
-
+- [ ] Script: jenkins_p2_PassGen.sh - use a loop instead of repeating same command.
 ## Issues & Contributions
 So far I am not familiar with maintaining issues on the project, yet it is still work in progress and trying to make sure that most issues is resolved, I will keep updating the [Issues Section](#Known-Issues).
 
