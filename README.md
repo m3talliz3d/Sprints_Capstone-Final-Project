@@ -107,7 +107,7 @@ To filter commits by `terrafrom` or `jenkins` or `script` type this command
 `git log --decorate=short --all | grep -i <tool_name>` in the terminal
 
 ## Known Issues
-- #### ssh to `aws.metallized.project` show error
+1. #### ssh to `aws.metallized.project` show error
   ```bash
   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
@@ -124,10 +124,10 @@ To filter commits by `terrafrom` or `jenkins` or `script` type this command
   ```
   - ##### Solution
     - type `ssh-keygen -R aws.metallized.project` in the terminal and it will remove the old fingerprint
+    - Will be solved with **option "5"** in the [Perks section](#perks)
 
----
 
-- #### On Terraform destroy you will have issue with deleteing VPC and it will fail, workaround:
+2. #### On Terraform destroy you will have issue with deleteing VPC and it will fail, workaround:
   - login to AWS console and navigate to EC2
     - Go to loadbalancer and delete ELB.
     - Then navigate to Network Interfaces and delete any created.
